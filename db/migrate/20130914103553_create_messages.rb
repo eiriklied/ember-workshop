@@ -3,7 +3,7 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages do |t|
       t.string :name
       t.string :email
-      t.text :content
+      t.text :body
 
       t.timestamps
     end

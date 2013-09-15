@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Message.create([
+  {
+    name: 'Jøran Lillesand', 
+    email: 'joran.lillesand@bekk.no', 
+    body: 'Faggruppearbeid er viktig. I webarkitektur lager vi mye kult med JavaScript'
+  },
+  {
+    name: 'Eirik Lied',
+    email: 'eirik.lied@bekk.no',
+    body: 'Enig at faggruppe er bra, men kan ikke jobbe med det hele tiden!'
+  },
+  {
+    name: 'Kim Joar',
+    email: 'kim.joar.bekkelund@bekk.no',
+    body: 'Så lenge man jobber med Javascript skal man være fornøyd.'
+  }
+  ])
