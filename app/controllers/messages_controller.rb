@@ -2,11 +2,11 @@ class MessagesController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Message.all
+    respond_with Message.order(id: :desc)
   end
 
   def create
-    @message = Message.create(message_params)
+    respond_with Message.create(message_params)
   end
 
 
