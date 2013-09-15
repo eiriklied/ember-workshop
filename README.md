@@ -10,7 +10,7 @@ First, clone me on GitHub!
 
 You need Ruby >= 1.9.3
 
-The easiest way is to install Tokaido app (only Mac) which gives you everything you need. 
+The easiest way is to install Tokaido app (only Mac >= OSX 10.8) which gives you everything you need. 
 
 1. [Download Tokaido](https://github.com/tokaido/tokaidoapp/releases/download/v0.5-pre1/Tokaido.zip), unzip and install it
 2. Launch it
@@ -21,6 +21,13 @@ The easiest way is to install Tokaido app (only Mac) which gives you everything 
     
     # can take a few minutes the first time
     bundle
+
+    # create database
+    rake db:migrate
+
+    # add some records
+    rake db:seed
+
 
 ### Run!
 
