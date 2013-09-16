@@ -4,5 +4,6 @@ EmberApp::Application.routes.draw do
     resources :messages
   end
 
+  get '/static' => 'pages#static'
   root to: 'pages#start'
 end
