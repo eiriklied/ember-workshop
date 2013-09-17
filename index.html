@@ -36,20 +36,163 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
+        
         <section>
             <h1>Ember.js</h1>
-            <a href="http://eiriklied.github.io/ember-workshop/">eiriklied.github.io/ember-workshop</a>
+            <p><small>
+              <a href="http://eiriklied.github.io/ember-workshop/">eiriklied.github.io/ember-workshop</a></small>
+            </p>
         </section>
         
         <section data-markdown>
           <script type="text/template">
               ## Today
 
-              - some slides
-              - some code examples
-              - mostly coding!
+              slides
+              
+              code examples
+              
+              coding!
           </script>
         </section>
+
+        <section>
+          <img src="images/ember.png"/>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+              >A framework for creating ambitious web applications
+
+              >Lets you start fast
+
+              >Structure to grow big
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+              Super friendly website: [emberjs.com](http://emberjs.com)
+
+              Community with lots of traction
+              
+              More than 8000 stargazers
+
+              Just released 1.0
+            </script>
+        </section>
+
+
+        <section data-markdown>
+            <script type="text/template">
+            ## Ember is big
+
+            - Some pieces today
+            - Stay away from ember-data!
+            </script>
+        </section>
+        
+        <section>
+          <h2>Hello world</h2>
+          <p>Enterprise Version&trade;</p>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+              # Routing
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+            An application gets many states
+            
+            A URL should represent the state
+
+            Ember Router
+            </script>
+        </section>
+
+        <section>
+          <pre>
+            <code class="javascript">
+            // router.js
+            App.Router.map(function() {
+              this.route('about'); 
+              this.resource('dogs', { path: '/pets'}, function() {
+                this.resource('dog', { path: '/:dog_id'});
+              });
+            });
+            </code>
+          </pre>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ```javascript
+          // general route, words describing nouns
+          this.route('terms-of-use');
+
+          // nouns
+          this.resource('dogs')
+
+          ```
+          </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+              ## What&#39;s in a name..
+
+              
+              `this.route('about');`
+            </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            - Ember will look for
+              - `AboutRoute`
+              - `AboutController`
+              - `about.hbs`
+            
+            - You don&#39;t _have_ to implement them
+              - Ember will use them if you do
+            - Dont worry too much about it now!
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Nested routes
+            
+            - We can nest routes, but this changes the behaviour of what Ember will look for
+              
+              ```javascript
+                this.resource('dogs', function() { // index
+                  this.route('new') // new
+                })
+              ```
+            - Ember will look for
+              - `DogsIndexRoute, DogsNewRoute`
+              - `DogsIndexController, DogsNewController`
+              - `dogs/index.hbs, dogs/new.hbs`
+
+          </script>
+        </section>
+
+        <section>
+          <h2>Example!</h2>
+        </section>
+
+
+<!--
+        <section data-markdown>
+            <script type="text/template">
+            </script>
+        </section>
+-->
+
 
     </div>
 
