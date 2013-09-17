@@ -1,6 +1,6 @@
-# An app serving Ember
+# Ember workshop
 
-[Ember.js](http://emberjs.com/)
+Slides found on [eiriklied.github.io/ember-workshop](http://eiriklied.github.io/ember-workshop)
 
 ## Up and running
 
