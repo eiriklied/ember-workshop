@@ -99,7 +99,7 @@
 
         <section data-markdown>
             <script type="text/template">
-              # Routing
+              # Router
             </script>
         </section>
 
@@ -109,7 +109,7 @@
             
             A URL should represent the state
 
-            Ember Router
+            Ember Router specifies the applications URLs
             </script>
         </section>
 
@@ -170,26 +170,342 @@
               
               ```javascript
                 this.resource('dogs', function() { // index
-                  this.route('new') // new
+                  this.route('show') // show
                 })
               ```
             - Ember will look for
-              - `DogsIndexRoute, DogsNewRoute`
-              - `DogsIndexController, DogsNewController`
-              - `dogs/index.hbs, dogs/new.hbs`
+              - `DogsIndexRoute, DogsShowRoute`
+              - `DogsIndexController, DogsShowController`
+              - `dogs/index.hbs, dogs/show.hbs`
 
           </script>
         </section>
 
         <section>
-          <h2>Example!</h2>
+          <h2>Real example!</h2>
         </section>
 
+        <section data-markdown>
+          <script type="text/template">
+            # Hacking time!
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Challenge 1
+            
+            [github.com/eiriklied/ember-workshop](https://github.com/eiriklied/ember-workshop)
+
+            1. Get rails app up and running (see readme)
+            1. Create a layout with an `outlet` in application.hbs
+              - If you want some static html that looks good, look at [localhost:3000/static](http://localhost:3000/static)
+            1. Create a route `about` with a simple template that contains some text
+            1. Create a route `messages` that has a neste route `new`
+            1. Open the Ember inspector in Chrome and verify that you see the routes there
+            1. Add the missing templates for `messages`
+            1. Create menu items that links to `#/about` and `#/messages` 
+      
+            
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            # Routes 
+
+            (not Router&trade;)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            - The router handles URLs
+            - A URL needs us to load a given state
+            - Ember Routes should load the data needed to get to that state
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ```javascript
+            // routes.js
+            this.resource('dogs');
+
+            // routes/dogs-route.js
+            App.DogsRoute = Ember.Route.extend({
+
+              // This callback is run when the correct route is triggered!
+              // It should return one model or an array of models
+              model: function() {
+                return [
+                  { name: 'Fido'  },
+                  { name: 'Pluto' }
+                ];
+              }
+            });
+          ```
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            # Templating
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            Ember uses Handlebars:  
+            [handlebarsjs.com](http://handlebarsjs.com)
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Properties
+
+            From model or controller
+
+            ```html
+            <p>
+              Your name: {{firstName}} {{lastName}}
+            </p>
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Conditionals
+
+            ```html
+            {{#if person}}
+              Welcome back, {{person.firstName}} {{person.lastName}}!
+            {{else}}
+              You must sign in
+            {{/if}}
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Loops
+
+            Specify context
+
+            ```html
+            <ul>
+              {{#each person in model}}
+                <li>Hello, {{person.name}}!</li>
+              {{/each}}
+            </ul>
+            ```
+
+            Implicit context
+
+            ```html
+            <ul>
+              {{#each}}
+                <li>Hello, {{name}}!</li>
+              {{/each}}
+            </ul>
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Helpers
+
+            `link-to`
+
+            ```javascript
+            // you find the routes name in the Ember inspector!
+            {{#link-to 'dogs.new'}}The page{{/link-to}}
+            ```
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Helpers
+
+            `input`
+
+            ```javascript
+            // will create inputs that are bound to model values name and body
+            {{#input type="text"     name="name" value=name}}
+            {{#input type="textarea" name="body" value=body}}
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Actions
+
+            ```html
+            <!-- 
+              Trigger action 'startSignup' in controller or route
+              with name as parameter
+             -->
+            <button {{action 'startSignup' name}}>Sign up!</button>
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Challenge 2
+
+            1. Use the `link-to` helper for the links you have in the menu
+            1. Create a MessagesIndexRoute and deliver an array of data with `name`, `message`, `body` and `created_at` (a date formatted string) for each item.
+            1. Build the `messages/index.hbs` template using the supplied model data
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            # Data
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          We want to load some real data
+          
+          Ember Data? 
+
+          Not a good idea yet
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          # jQuery
+          
+          Something we know at least :)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ```javascript
+          App.DogsIndexRoute = Ember.Route.extend({
+            model: function() {
+              return Ember.$.getJSON('/dogs.json');
+            }
+          });
+          ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## But thats async??
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## Ember works great with promises :)
+          
+          - `model` function returns a promise, 
+          - Ember will load the template when the model is ready
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## Challenge 3
+
+          1. The rails app delivers data on `/api/messages.json`
+          1. Make your route fetch real data
+            - Remember to transform data from the server if necessary!
+            - hint: `.then()` is perfect for that
+          1. Make sure your template displays the data from the server!
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          # Handlebar helpers
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## Helpers
+
+          - `#link-to` is a helper
+          - We can create more helpers super easy!
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Helpers
+
+            ```javascript
+            // in helpers folder:
+            Ember.Handlebars.helper('my-helper', function(param, options) {
+              // The return value is HTML escaped by default 
+              // to avoid XSS problems.
+              // If you need to output HTML, you can do this:
+              // return new Handlebars.SafeString(myString);
+              return "my processed value";
+            });
+            ```
+
+            ```html
+            <!-- in .hbs template: -->
+            <h1>{{helper-name 'parameter'}}<!h1>
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Challenge 4
+
+            1. The app has moment.js installed
+            1. Create a helper format-date so you can call `{{format-date created_at}}` to display a pretty time
+              - Hint: `moment(myTimeString).fromNow();`
+
+            1. The app has md5 hashing algorithm installed
+            1. Create a helper so you can call `{{gravatar email}}` to display an image tag with a gravatar from an email address.
+              - Hint: `CryptoJS.MD5(email).toString();`
+
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            # Controllers
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          </script>
+        </section>
 
 <!--
         <section data-markdown>
-            <script type="text/template">
-            </script>
+          <script type="text/template">
+          </script>
         </section>
 -->
 
