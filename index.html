@@ -56,18 +56,28 @@
           </script>
         </section>
 
-        <section>
-          <img src="images/ember.png"/>
+        <section data-markdown>
+            <script type="text/template">
+              <img src="images/ember.png"/>
+
+              > A framework for creating ambitious web applications
+              
+              > Makes trivial choices for you
+              
+              > Lets you start fast
+              
+              > Structure to grow big
+            </script>
         </section>
 
         <section data-markdown>
-            <script type="text/template">
-              >A framework for creating ambitious web applications
+          <script type="text/template">
+            <img src="https://1.gravatar.com/avatar/f711c56f2403ef4d43b56bb87ca52af2?s=240"/>
 
-              >Lets you start fast
 
-              >Structure to grow big
-            </script>
+            > Ember rookie
+
+          </script>
         </section>
 
         <section data-markdown>
@@ -494,11 +504,72 @@
 
         <section data-markdown>
           <script type="text/template">
+            - After a route has been set up, the routes template is rendered
+            - The template gets properties from a controller, NOT the model
+            - The controller decorates the model
+          </script>
+        </section>
+
+        <section>
+          <img src="images/template-controller-model.png" style="background-color:#fff;">
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+          ## Controllers can
+
+          - Decorate model
+          - Receive actions
           </script>
         </section>
 
         <section data-markdown>
           <script type="text/template">
+          ```javascript
+            // controller
+            App.FooController = Ember.ObjectController.extend({
+              myProperty: { name: 'Eirik' },
+              actions: {
+                redirect: function(){ 
+                  doSomethingWith(myProperty);
+                  this.transitionToRoute('dogs.new'); 
+                }
+              }
+            });
+          ```
+
+          ```html
+          <!-- use properties from the controller -->
+          <p>{{myProperty.name}}</p>
+
+          <!-- trigger actions on the controller -->
+          <button {{action 'redirect'}}>Click me</button>
+          ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Challenge 5
+
+            1. Create a link to `#/messages/new`
+            1. Build a form with fields `email`, `name` and `body`
+            1. Trigger an action on MessagesNewController that saves the values to the server.
+              - Hint: The server expects http post params on the form
+              ```javascript
+                // posted to /messages.json
+                { message: 
+                    {
+                      email: 'sadasd',
+                      name: 'asdasd',
+                      body: 'sadasd'
+                    }
+                }
+              ```
+            1. On the messages/new page: show a preview of the message you are writing that updates live!
+
+
+
           </script>
         </section>
 
