@@ -15,6 +15,6 @@ private
   def message_params
     params.
       require(:message).
-      permit(:name, :email, :content)
+      permit(:name, :email, :body)
   end
 end
