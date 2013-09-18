@@ -1,4 +1,4 @@
-
+# encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -9,7 +9,7 @@
 
 Message.create([
   {
-    name: 'Joran Lillesand', 
+    name: 'Jøran Lillesand', 
     email: 'joran.lillesand@bekk.no', 
     body: 'Faggruppearbeid er viktig. I webarkitektur lager vi mye kult med JavaScript'
   },
@@ -21,6 +21,6 @@ Message.create([
   {
     name: 'Kim Joar',
     email: 'kim.joar.bekkelund@bekk.no',
-    body: 'Saa lenge man jobber med Javascript skal man være fornoyd.'
+    body: 'Så lenge man jobber med Javascript skal man være fornøyd.'
   }
   ])
