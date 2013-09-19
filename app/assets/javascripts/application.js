@@ -13,6 +13,7 @@
 //= require md5
 //= require moment.min
 //= require jquery
+//= require jquery_ujs
 //= require handlebars
 //= require ember
 //= require_self
